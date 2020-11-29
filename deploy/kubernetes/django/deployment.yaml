@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: django-2
-          image: okayjosh/salessytem:latest
+          image: okayjosh/salessystem:latest
           command: ['/bin/bash', 'run.sh'] # runs migrations and starts the server
           ports:
             - containerPort: 8000
