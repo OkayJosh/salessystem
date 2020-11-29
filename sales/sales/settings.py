@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'sales.managesales',
+    'sales/managesales',
 
     'rest_framework',
     'phonenumber_field',
