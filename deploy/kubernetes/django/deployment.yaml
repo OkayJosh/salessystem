@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-2
+  labels:
+    app: django-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-2-container
+  template:
+    metadata:
+      labels:
+        app: django-2-container
+    spec:
+      containers:
+        - name: django-2
+          image: okayjosh/salessytem:latest
+          command: ['/bin/bash', 'run.sh'] # runs migrations and starts the server
+          ports:
+            - containerPort: 8000
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-2-credentials
+                  key: user
+
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-2-credentials
+                  key: password
+
+            - name: POSTGRES_HOST
+              value: postgres-2-service
